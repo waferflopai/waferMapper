@@ -32,13 +32,6 @@ Try it now: [waferMapper on Vercel](https://wafermapper.vercel.app/)
 
 ---
 
-## 📷 Screenshot
-
-> *Placeholder – add a screenshot here.*  
-> ![Screenshot placeholder](https://via.placeholder.com/800x450?text=waferMapper+screenshot)
-
----
-
 ## 📖 How to Use
 
 1. **Set up your master schema**  
