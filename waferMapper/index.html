@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta name="google-site-verification" content="Ld4a65NxUjRimxJDm60LoDW2TyPSW-8oBd1dIUso_r0" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ============================================================ -->
+    <!--  PRIMARY SEO (MAXED OUT)                                      -->
+    <!-- ============================================================ -->
+    <title>waferMapper – Merge CSV to Master Schema | Free ETL Tool by waferflopai</title>
+    <meta name="description" content="waferMapper is the ultimate free CSV mapping and ETL tool. Merge multiple incoming CSV files into a single master schema file. No uploads, no sign-ups. Built by waferflopai." />
+    <meta name="keywords" content="csv mapper, csv merger, merge csv files, etl tool, data mapping, csv to master schema, waferflopai, waferMapper, free csv tool, data transformation, combine csv, csv converter" />
+    <meta name="author" content="waferflopai" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://wafermapper.vercel.app/" />
+
+    <!-- ============================================================ -->
+    <!--  OPEN GRAPH / SOCIAL                                          -->
+    <!-- ============================================================ -->
+    <meta property="og:title" content="waferMapper – Merge CSV to Master Schema | Free ETL Tool" />
+    <meta property="og:description" content="Merge multiple incoming CSV files into a single master schema CSV. No uploads, no sign-ups. Free ETL tool by waferflopai." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wafermapper.vercel.app/" />
+    <meta property="og:image" content="https://wafermapper.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- ============================================================ -->
+    <!--  TWITTER CARD                                                -->
+    <!-- ============================================================ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="waferMapper – Merge CSV to Master Schema | Free ETL Tool" />
+    <meta name="twitter:description" content="Merge multiple incoming CSV files into a single master schema CSV. No uploads, no sign-ups. Free ETL tool by waferflopai." />
+    <meta name="twitter:image" content="https://wafermapper.vercel.app/og-image.png" />
+
+    <!-- ============================================================ -->
+    <!--  STRUCTURED DATA (JSON‑LD) – MAXED OUT                       -->
+    <!-- ============================================================ -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "waferMapper",
+            "url": "https://wafermapper.vercel.app/",
+            "description": "Merge multiple incoming CSV files into a single master schema CSV. No uploads, no sign-ups. Free ETL tool by waferflopai.",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "All",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "author": {
+                "@type": "Person",
+                "name": "waferflopai"
+            },
+            "creator": {
+                "@type": "Person",
+                "name": "waferflopai"
+            },
+            "keywords": "csv mapper, csv merger, merge csv files, etl tool, data mapping, csv to master schema, waferflopai, waferMapper, free csv tool, data transformation, combine csv, csv converter"
+        }
+    </script>
+
+    <!-- ============================================================ -->
+    <!--  FAVICON                                                     -->
+    <!-- ============================================================ -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+
+    <!-- ============================================================ -->
+    <!--  PRELOADS                                                    -->
+    <!-- ============================================================ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ---------- BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Raleway', sans-serif;
+        }
+        html {
+            font-size: 10px;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #eef2f6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0;
+            border-left: 1px solid #1e293b;
+            border-top: 1px solid #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border: 1px solid #1e293b;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* ---------- SKIP LINK (a11y / SEO) ---------- */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0f172a;
+            color: #fff;
+            padding: 6px 20px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            z-index: 9999;
+            border: 2px solid #1e293b;
+            transition: top 0.15s ease;
+        }
+        .skip-link:focus {
+            top: 8px;
+        }
+
+        /* ---------- HEADER ---------- */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 20px;
+            border-bottom: 3px solid #1e293b;
+            flex-shrink: 0;
+            background: white;
+        }
+        .app-header h1 {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header h1 .badge {
+            background: #0f172a;
+            color: white;
+            padding: 0 10px;
+            font-size: 1.2rem;
+            border: 2px solid #0f172a;
+        }
+        .app-header h1 .sub {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #475569;
+            margin-left: 4px;
+            letter-spacing: 0.04em;
+        }
+        .app-header .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .block-btn {
+            background: #0f172a;
+            color: white;
+            border: 2px solid #0f172a;
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 4px 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            box-shadow: 3px 3px 0px 0px rgba(15, 23, 42, 0.18);
+            transition: all 0.06s linear;
+            cursor: pointer;
+            will-change: transform;
+        }
+        .block-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px 0px rgba(15, 23, 42, 0.18);
+        }
+        .block-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px 0px rgba(15, 23, 42, 0.18);
+        }
+        .block-btn-outline {
+            background: transparent;
+            color: #1e293b;
+            border: 2px solid #1e293b;
+            box-shadow: 3px 3px 0px 0px rgba(30, 41, 59, 0.08);
+        }
+        .block-btn-outline:hover {
+            background: #f1f5f9;
+        }
+        .block-btn-success {
+            background: #16a34a;
+            border-color: #16a34a;
+            box-shadow: 3px 3px 0px 0px rgba(22, 163, 74, 0.18);
+        }
+        .block-btn-success:hover {
+            background: #15803d;
+            border-color: #15803d;
+        }
+        .block-btn-sm {
+            font-size: 0.55rem;
+            padding: 2px 10px;
+        }
+        .block-btn-warning {
+            background: #d97706;
+            border-color: #d97706;
+            box-shadow: 3px 3px 0px 0px rgba(217, 119, 6, 0.18);
+        }
+        .block-btn-warning:hover {
+            background: #b45309;
+            border-color: #b45309;
+        }
+        .block-btn:disabled {
+            opacity: 0.35;
+            transform: none !important;
+            box-shadow: none !important;
+            cursor: not-allowed;
+        }
+
+        /* ---------- EXPORT DROPDOWN ---------- */
+        .export-select {
+            background: white;
+            border: 2px solid #1e293b;
+            font-size: 0.55rem;
+            font-weight: 800;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1e293b;
+            cursor: pointer;
+            box-shadow: 2px 2px 0px 0px rgba(30, 41, 59, 0.08);
+            height: 26px;
+            outline: none;
+            font-family: 'Raleway', sans-serif;
+        }
+        .export-select:hover {
+            background: #f1f5f9;
+        }
+        .export-select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
+
+        /* ---------- CANVAS ---------- */
+        .canvas {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            background: #f8fafc;
+            min-height: 300px;
+        }
+
+        /* ---------- CELL ---------- */
+        .cell {
+            position: absolute;
+            background: white;
+            border: 2px solid #1e293b;
+            box-shadow: 6px 6px 0px 0px rgba(30, 41, 59, 0.08);
+            padding: 6px 12px;
+            min-width: 110px;
+            max-width: 150px;
+            text-align: center;
+            transition: box-shadow 0.1s ease, transform 0.1s ease;
+            cursor: default;
+            user-select: none;
+            transform: translate(-50%, -50%) translateZ(0);
+            z-index: 10;
+            overflow: hidden;
+            animation: cell-appear 0.25s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes cell-appear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.92) translateZ(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) translateZ(0);
+            }
+        }
+        .cell:hover {
+            box-shadow: 8px 8px 0px 0px rgba(30, 41, 59, 0.14);
+            transform: translate(-50%, -50%) translateY(-2px) translateZ(0);
+        }
+        .cell .name {
+            font-weight: 800;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .cell .stats {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        .cell .badge-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border: 1px solid #1e293b;
+            margin-right: 4px;
+            flex-shrink: 0;
+        }
+        .cell .badge-dot.mapped {
+            background: #16a34a;
+        }
+        .cell .badge-dot.pending {
+            background: #fef9c3;
+        }
+        .cell .badge-dot.master-dot {
+            background: #1e293b;
+            width: 8px;
+            height: 8px;
+            border: 2px solid #1e293b;
+        }
+        .cell.master-cell {
+            min-width: 140px;
+            padding: 10px 20px;
+            border-color: #0f172a;
+            border-width: 3px;
+            box-shadow: 8px 8px 0px 0px rgba(15, 23, 42, 0.12);
+            background: #f1f5f9;
+            animation-delay: 0.05s;
+        }
+        .cell.master-cell .name {
+            font-size: 0.8rem;
+        }
+
+        /* ---------- PLUS ---------- */
+        .plus-btn {
+            position: absolute;
+            background: white;
+            border: 2px solid #1e293b;
+            width: 28px;
+            height: 28px;
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 0px 0px rgba(30, 41, 59, 0.08);
+            transition: all 0.08s ease;
+            transform: translate(-50%, -50%) translateZ(0);
+            z-index: 20;
+            line-height: 1;
+            animation: cell-appear 0.3s ease-out forwards;
+            opacity: 0;
+        }
+        .plus-btn:hover {
+            transform: translate(-50%, -50%) scale(1.12) translateZ(0);
+            box-shadow: 5px 5px 0px 0px rgba(30, 41, 59, 0.14);
+            background: #dbeafe;
+        }
+        .plus-btn:active {
+            transform: translate(-50%, -50%) scale(0.90) translateZ(0);
+        }
+
+        /* ---------- CONNECTION LINE ---------- */
+        .connection-line {
+            stroke-width: 3;
+            stroke-dasharray: 8 5;
+            animation: dash-flow 0.8s linear infinite;
+            fill: none;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+        @keyframes dash-flow {
+            to {
+                stroke-dashoffset: -13;
+            }
+        }
+
+        /* ---------- TOAST ---------- */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateZ(0);
+            background: #0f172a;
+            color: white;
+            border: 2px solid #1e293b;
+            padding: 4px 24px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.08);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* ---------- TOOLBAR ---------- */
+        .toolbar {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            border: 2px solid #1e293b;
+            padding: 8px 18px;
+            box-shadow: 6px 6px 0px 0px rgba(30, 41, 59, 0.08);
+            z-index: 50;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .toolbar .divider {
+            width: 1px;
+            height: 24px;
+            background: #e2e8f0;
+        }
+        .toolbar .group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .toolbar .group .label {
+            font-size: 0.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #94a3b8;
+            letter-spacing: 0.06em;
+        }
+        .toolbar input[type="file"] {
+            font-size: 0.55rem;
+            font-weight: 600;
+            max-width: 120px;
+        }
+        .toolbar input[type="file"]::file-selector-button {
+            font-size: 0.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 2px 10px;
+            border: 2px solid #1e293b;
+            background: #f1f5f9;
+            cursor: pointer;
+            transition: 0.08s ease;
+        }
+        .toolbar input[type="file"]::file-selector-button:hover {
+            background: #e2e8f0;
+        }
+        .toolbar .btn-new {
+            background: #f1f5f9;
+            border: 2px solid #1e293b;
+            font-weight: 800;
+            font-size: 0.55rem;
+            padding: 2px 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.08s ease;
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.04);
+            white-space: nowrap;
+        }
+        .toolbar .btn-new:hover {
+            background: #e2e8f0;
+            transform: translateY(-1px);
+        }
+        .toolbar .btn-new:active {
+            transform: scale(0.94);
+        }
+        .toolbar .btn-new.master-btn {
+            border-color: #16a34a;
+            color: #14532d;
+        }
+        .toolbar .btn-new.incoming-btn {
+            border-color: #2563eb;
+            color: #1e3a8a;
+        }
+
+        /* ---------- PROMPT ---------- */
+        .prompt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.15);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prompt-modal {
+            background: #f8fafc;
+            border: 3px solid #1e293b;
+            box-shadow: 12px 12px 0px 0px rgba(30, 41, 59, 0.10);
+            padding: 20px 24px;
+            min-width: 320px;
+            max-width: 480px;
+            width: 100%;
+            margin: 0 16px;
+        }
+        .prompt-modal .title {
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 2px solid #1e293b;
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+        .prompt-modal input {
+            width: 100%;
+            padding: 6px 10px;
+            border: 2px solid #1e293b;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            background: white;
+            color: #0f172a;
+        }
+        .prompt-modal input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+        }
+        .prompt-modal .actions {
+            display: flex;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+        .prompt-modal .actions button {
+            font-weight: 800;
+            font-size: 0.65rem;
+            padding: 4px 14px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.06s linear;
+            border: 2px solid #1e293b;
+        }
+        .prompt-modal .actions .btn-cancel {
+            background: transparent;
+            color: #1e293b;
+            box-shadow: 2px 2px 0px 0px rgba(30, 41, 59, 0.08);
+        }
+        .prompt-modal .actions .btn-cancel:hover {
+            background: #f1f5f9;
+        }
+        .prompt-modal .actions .btn-confirm {
+            background: #0f172a;
+            color: white;
+            border-color: #0f172a;
+            box-shadow: 3px 3px 0px 0px rgba(15, 23, 42, 0.18);
+        }
+        .prompt-modal .actions .btn-confirm:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px 0px rgba(15, 23, 42, 0.18);
+        }
+
+        /* ---------- MODAL ---------- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.12);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.15s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -44%) scale(0.96) translateZ(0);
+            width: 88vw;
+            max-width: 1150px;
+            height: 88vh;
+            background: #f8fafc;
+            border: 3px solid #1e293b;
+            box-shadow: 12px 12px 0px 0px rgba(30, 41, 59, 0.10);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            padding: 14px 18px;
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.18s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal.open {
+            transform: translate(-50%, -50%) scale(1) translateZ(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid #1e293b;
+            padding-bottom: 5px;
+            flex-shrink: 0;
+        }
+        .modal-header .title {
+            font-size: 0.95rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .modal-header .title .src {
+            color: #2563eb;
+        }
+        .modal-header .title .tgt {
+            color: #16a34a;
+        }
+        .modal-header .close-btn {
+            font-size: 1.6rem;
+            font-weight: 900;
+            cursor: pointer;
+            border: 2px solid #1e293b;
+            padding: 0 10px;
+            background: white;
+            line-height: 1.2;
+            transition: 0.08s ease;
+        }
+        .modal-header .close-btn:hover {
+            background: #f1f5f9;
+        }
+
+        /* ---------- TABLES ---------- */
+        .modal-tables {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            flex: 0 0 40%;
+            min-height: 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .modal-tables .table-pane {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+        .modal-tables .table-pane .pane-label {
+            font-size: 0.55rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding-bottom: 2px;
+            border-bottom: 2px solid #1e293b;
+            flex-shrink: 0;
+        }
+        .modal-tables .table-pane .pane-label .count {
+            background: #1e293b;
+            color: white;
+            padding: 0 6px;
+            font-size: 0.5rem;
+        }
+        .modal-tables .table-pane .table-wrap {
+            flex: 1;
+            overflow: auto;
+            border: 2px solid #1e293b;
+            background: white;
+            margin-top: 2px;
+            contain: strict;
+        }
+        .modal-tables .table-pane .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.7rem;
+        }
+        .modal-tables .table-pane .table-wrap th {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            font-size: 0.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 3px 6px;
+            border-bottom: 3px solid #1e293b;
+            border-right: 1px solid #e2e8f0;
+            text-align: left;
+            background: #f8fafc;
+            transition: background 0.12s ease, border-color 0.12s ease;
+        }
+        .modal-tables .table-pane .table-wrap th.incoming-th {
+            background: #dbeafe;
+            color: #1e3a8a;
+            border-bottom-color: #2563eb;
+            cursor: grab;
+        }
+        .modal-tables .table-pane .table-wrap th.incoming-th:active {
+            cursor: grabbing;
+        }
+        .modal-tables .table-pane .table-wrap th.incoming-th.mapped-col {
+            background: #bfdbfe;
+            border-bottom-color: #2563eb;
+        }
+        .modal-tables .table-pane .table-wrap th.incoming-th.mapped-col::after {
+            content: " ✓";
+            font-size: 0.5rem;
+            color: #16a34a;
+            font-weight: 900;
+        }
+        .modal-tables .table-pane .table-wrap th.incoming-th:hover {
+            background: #93c5fd;
+            transform: scale(1.02);
+            box-shadow: 2px 2px 0px 0px rgba(37, 99, 235, 0.15);
+        }
+        .modal-tables .table-pane .table-wrap th.master-th {
+            background: #dcfce7;
+            color: #14532d;
+            border-bottom-color: #16a34a;
+        }
+        .modal-tables .table-pane .table-wrap th.master-th.mapped-col {
+            background: #bbf7d0;
+            border-bottom-color: #16a34a;
+        }
+        .modal-tables .table-pane .table-wrap th.master-th.mapped-col::after {
+            content: " ✓";
+            font-size: 0.5rem;
+            color: #16a34a;
+            font-weight: 900;
+        }
+        .modal-tables .table-pane .table-wrap th.master-th:hover {
+            background: #86efac;
+            transform: scale(1.02);
+            box-shadow: 2px 2px 0px 0px rgba(22, 163, 74, 0.15);
+        }
+        .modal-tables .table-pane .table-wrap th.drop-active {
+            background: #fef9c3 !important;
+            border-bottom-color: #ca8a04 !important;
+            transform: scale(1.04);
+            box-shadow: 3px 3px 0px 0px rgba(202, 138, 4, 0.15);
+        }
+        .modal-tables .table-pane .table-wrap td {
+            padding: 2px 6px;
+            border-bottom: 1px solid #f1f5f9;
+            font-weight: 600;
+            color: #0f172a;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .modal-tables .table-pane .table-wrap tr:hover td {
+            background: #fafafa;
+        }
+
+        /* ---------- VISUAL MAPPER ---------- */
+        .modal-visual {
+            flex: 0 0 120px;
+            min-height: 60px;
+            max-height: 180px;
+            position: relative;
+            margin-top: 4px;
+            border: 2px solid #1e293b;
+            background: #fafafa;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .modal-visual .vis-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .modal-visual svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ---------- MAPPING PILLS ---------- */
+        .mapping-pills-section {
+            border: 2px solid #1e293b;
+            border-top: none;
+            background: #fafafa;
+            padding: 4px 8px;
+            flex-shrink: 0;
+            min-height: 32px;
+            max-height: 48px;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+        .mapping-pills-section::-webkit-scrollbar {
+            height: 3px;
+            width: 3px;
+        }
+        .mapping-pills-section::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .mapping-pills-section::-webkit-scrollbar-thumb {
+            background: #94a3b8;
+            border: 1px solid #1e293b;
+        }
+        .mapping-pills-section .map-pill {
+            background: white;
+            border: 2px solid #1e293b;
+            padding: 1px 6px 1px 4px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            box-shadow: 2px 2px 0px 0px rgba(30, 41, 59, 0.05);
+            white-space: nowrap;
+        }
+        .mapping-pills-section .map-pill .src {
+            color: #2563eb;
+        }
+        .mapping-pills-section .map-pill .tgt {
+            color: #16a34a;
+        }
+        .mapping-pills-section .map-pill .arrow {
+            color: #94a3b8;
+            font-weight: 900;
+        }
+        .mapping-pills-section .map-pill .del {
+            color: #ef4444;
+            font-weight: 900;
+            cursor: pointer;
+            border-left: 1px solid #e2e8f0;
+            padding-left: 4px;
+            transition: 0.08s ease;
+        }
+        .mapping-pills-section .map-pill .del:hover {
+            color: #dc2626;
+            transform: scale(1.1);
+        }
+        .mapping-pills-section .map-pill .transform-badge {
+            background: #f1f5f9;
+            border: 1px solid #1e293b;
+            font-size: 0.35rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 0 3px;
+            color: #1e293b;
+        }
+        .mapping-pills-section .map-pill .transform-badge.concat {
+            background: #1e293b;
+            color: white;
+            border-color: #1e293b;
+        }
+        .mapping-pills-section .pill-placeholder {
+            font-size: 0.5rem;
+            color: #94a3b8;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        /* ---------- SQL PANEL ---------- */
+        .modal-sql {
+            flex: 1;
+            min-height: 30px;
+            display: flex;
+            flex-direction: column;
+            margin-top: 4px;
+            border: 3px solid #1e293b;
+            background: #0f0f0f;
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+        .modal-sql .sql-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 10px;
+            background: #1a1a1a;
+            border-bottom: 2px solid #1e293b;
+            flex-shrink: 0;
+        }
+        .modal-sql .sql-header .label {
+            font-size: 0.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            font-family: 'Raleway', monospace;
+        }
+        .modal-sql .sql-header .label .prompt {
+            color: #16a34a;
+            font-weight: 900;
+        }
+        .modal-sql .sql-header .sql-actions {
+            display: flex;
+            gap: 4px;
+        }
+        .modal-sql .sql-header .sql-actions .block-btn {
+            font-size: 0.45rem;
+            padding: 1px 8px;
+            box-shadow: 2px 2px 0px 0px rgba(15, 23, 42, 0.18);
+            background: #0f172a;
+            border-color: #0f172a;
+            color: white;
+        }
+        .modal-sql .sql-header .sql-actions .block-btn:hover {
+            background: #1e293b;
+            border-color: #1e293b;
+        }
+        .modal-sql .sql-output {
+            flex: 1;
+            overflow: auto;
+            padding: 4px 10px;
+            color: #cbd5e1;
+            font-family: 'Courier New', monospace;
+            font-size: 0.55rem;
+            white-space: pre-wrap;
+            line-height: 1.6;
+            background: #0f0f0f;
+            letter-spacing: 0.01em;
+        }
+        .modal-sql .sql-output::-webkit-scrollbar {
+            width: 4px;
+        }
+        .modal-sql .sql-output::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-left: 1px solid #1e293b;
+        }
+        .modal-sql .sql-output::-webkit-scrollbar-thumb {
+            background: #334155;
+            border: 1px solid #1e293b;
+        }
+
+        /* ---------- MODAL FOOTER ---------- */
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            border-top: 2px solid #1e293b;
+            padding-top: 4px;
+            flex-shrink: 0;
+            margin-top: 4px;
+            gap: 6px;
+        }
+        .modal-footer .modal-actions {
+            display: flex;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        /* ---------- EMPTY STATE ---------- */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            pointer-events: none;
+        }
+        .empty-state .big-icon {
+            font-size: 4rem;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+        .empty-state .hint {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #cbd5e1;
+        }
+
+        /* ---------- VISIBLE FOOTER ---------- */
+        .app-footer {
+            flex-shrink: 0;
+            border-top: 3px solid #1e293b;
+            background: white;
+            text-align: center;
+            padding: 4px 0;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #475569;
+        }
+        .app-footer a {
+            color: #1e293b;
+            text-decoration: none;
+            border-bottom: 2px solid #1e293b;
+            transition: background 0.1s ease;
+        }
+        .app-footer a:hover {
+            background: #f1f5f9;
+        }
+
+        /* ---------- SEO FOOTER (invisible but indexable) ---------- */
+        .seo-footer {
+            display: none;
+            /* hidden from view but present in DOM for crawlers */;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width:700px) {
+            .modal {
+                width: 95vw;
+                height: 92vh;
+                padding: 10px 12px;
+            }
+            .modal-tables {
+                grid-template-columns: 1fr;
+                flex: 0 0 32%;
+            }
+            .modal-visual {
+                flex: 0 0 80px;
+            }
+            .mapping-pills-section {
+                max-height: 60px;
+            }
+            .cell .name {
+                font-size: 0.55rem;
+            }
+            .cell.master-cell .name {
+                font-size: 0.65rem;
+            }
+            .toolbar {
+                padding: 6px 12px;
+                gap: 6px;
+                bottom: 12px;
+            }
+            .toolbar .group .label {
+                display: none;
+            }
+            .prompt-modal {
+                min-width: auto;
+                margin: 0 12px;
+                padding: 16px;
+            }
+            .header-actions .export-select {
+                font-size: 0.45rem;
+                padding: 1px 4px;
+                height: 22px;
+            }
+        }
+        @media (max-height:600px) {
+            .modal-tables {
+                flex: 0 0 35%;
+            }
+            .modal-visual {
+                flex: 0 0 70px;
+            }
+            .modal-sql {
+                min-height: 20px;
+            }
+            .mapping-pills-section {
+                min-height: 24px;
+                max-height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SKIP LINK (a11y) ===== -->
+    <a class="skip-link" href="#canvas">Skip to tool</a>
+
+    <!-- ===== TOAST ===== -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header" role="banner">
+        <h1>
+            ⎆waferMapper
+            <span class="sub">master · incoming · merge</span>
+        </h1>
+        <div class="header-actions">
+            <select id="exportFormatSelect" class="export-select" aria-label="Export format">
+                <option value="txt">TXT</option>
+                <option value="csv" selected>CSV</option>
+                <option value="json">JSON</option>
+            </select>
+            <button class="block-btn block-btn-success block-btn-sm" onclick="store.exportAll()" aria-label="Export all mapped files">export all</button>
+            <button class="block-btn block-btn-outline block-btn-sm" onclick="store.clearAll()" aria-label="Clear all data">clear</button>
+            <button class="block-btn block-btn-outline block-btn-sm" id="undoBtn" onclick="store.undo()" title="Undo (Ctrl+Z)" aria-label="Undo">↩</button>
+            <button class="block-btn block-btn-outline block-btn-sm" id="redoBtn" onclick="store.redo()" title="Redo (Ctrl+Y)" aria-label="Redo">↪</button>
+        </div>
+    </header>
+
+    <!-- ===== CANVAS (main tool area) ===== -->
+    <main class="canvas" id="canvas" role="main" aria-label="waferMapper workspace">
+        <div class="toolbar" id="toolbar" role="toolbar" aria-label="Toolbar">
+            <div class="group">
+                <span class="label">master</span>
+                <button class="btn-new master-btn" onclick="store.createMaster()" aria-label="Create new master schema">＋ new</button>
+                <input type="file" id="masterFile" accept=".csv" aria-label="Upload master CSV" />
+            </div>
+            <span class="divider" aria-hidden="true"></span>
+            <div class="group">
+                <span class="label">incoming</span>
+                <button class="btn-new incoming-btn" onclick="store.createIncoming()" aria-label="Create new incoming file">＋ new</button>
+                <input type="file" id="incomingFile" accept=".csv" multiple aria-label="Upload incoming CSV files" />
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== VISIBLE FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+        <a href="https://waferflopai.vercel.app/" target="_blank" rel="noopener noreferrer">Made by waferflopai</a>
+    </footer>
+
+    <!-- ===== MODAL ===== -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true"></div>
+    <div class="modal" id="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-header">
+            <span class="title" id="modalTitle">
+                <span class="src" id="modalSrcName">source</span>
+                <span style="color:#94a3b8;" aria-hidden="true"> ↔ </span>
+                <span class="tgt" id="modalTgtName">master</span>
+            </span>
+            <span class="close-btn" id="modalClose" role="button" tabindex="0" aria-label="Close modal">✕</span>
+        </div>
+
+        <div class="modal-tables" id="modalTables">
+            <div class="table-pane">
+                <div class="pane-label" style="color:#2563eb;">incoming <span class="count" id="modalSrcCount">0</span></div>
+                <div class="table-wrap" id="modalIncomingWrap" role="table" aria-label="Incoming data preview"></div>
+            </div>
+            <div class="table-pane">
+                <div class="pane-label" style="color:#16a34a;">master <span class="count" id="modalTgtCount">0</span></div>
+                <div class="table-wrap" id="modalMasterWrap" role="table" aria-label="Master schema preview"></div>
+            </div>
+        </div>
+
+        <div class="modal-visual" id="modalVisual" aria-label="Visual mapping preview">
+            <div class="vis-placeholder" id="visPlaceholder">drag columns to map</div>
+            <svg id="modalSvg" role="img" aria-label="Mapping visualization"></svg>
+        </div>
+
+        <div class="mapping-pills-section" id="mappingPillsSection" role="list" aria-label="Active mappings">
+            <span class="pill-placeholder" id="pillPlaceholder">no mappings</span>
+        </div>
+
+        <div class="modal-sql" id="modalSql">
+            <div class="sql-header">
+                <span class="label"><span class="prompt" aria-hidden="true">$</span> sql</span>
+                <div class="sql-actions">
+                    <button class="block-btn block-btn-warning block-btn-sm" onclick="store.generateSQL()" aria-label="Generate SQL">⚡ gen</button>
+                    <button class="block-btn block-btn-success block-btn-sm" onclick="store.runMapping()" aria-label="Run mapping">▶ run</button>
+                    <button class="block-btn block-btn-sm" onclick="store.exportSQL()" aria-label="Export SQL">📥 sql</button>
+                    <button class="block-btn block-btn-sm" onclick="store.exportCSV()" aria-label="Export CSV">📥 csv</button>
+                </div>
+            </div>
+            <div class="sql-output" id="sqlOutput" role="code" aria-label="SQL output">-- generate SQL or run the mapping to see results here</div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="modal-actions">
+                <button class="block-btn block-btn-success block-btn-sm" onclick="store.savePreset()" aria-label="Save preset">preset</button>
+                <button class="block-btn block-btn-sm" onclick="store.closeModal()" aria-label="Close and return">done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SEO FOOTER (invisible but indexable) ===== -->
+    <footer class="seo-footer">
+        <h2>waferMapper – Merge CSV to Master Schema</h2>
+        <p>waferMapper is a free, browser-based CSV mapping and merging tool that allows data professionals to map and merge multiple incoming CSV files into a single master schema CSV. Built by waferflopai.</p>
+        <p>Key features: visual column mapping, drag-and-drop interface, SQL generation, CSV export, preset management, undo/redo, and real-time preview.</p>
+        <p>waferMapper is a standalone web application – no server, no installation, no data upload required.</p>
+        <p>waferMapper is created by <strong>waferflopai</strong>.</p>
+    </footer>
+
+    <script>
+        // ----------------------------------------------------------------
+        // CONSTANTS
+        // ----------------------------------------------------------------
+        const PREVIEW_ROWS = 20;
+        const TRANSFORMS = {
+            none: v => v,
+            trim: v => v.trim(),
+            upper: v => v.toUpperCase(),
+            lower: v => v.toLowerCase(),
+            concat: parts => parts.join(' ')
+        };
+
+        // ----------------------------------------------------------------
+        // ROBUST CSV PARSER
+        // ----------------------------------------------------------------
+        function parseCSV(text) {
+            const lines = text.split('\n').filter(line => line.trim());
+            if (lines.length < 2) return { headers: [], data: [] };
+
+            function parseRow(row) {
+                const result = [];
+                let current = '';
+                let insideQuotes = false;
+                for (let i = 0; i < row.length; i++) {
+                    const char = row[i];
+                    if (char === '"') {
+                        if (insideQuotes && row[i + 1] === '"') {
+                            current += '"';
+                            i++;
+                        } else {
+                            insideQuotes = !insideQuotes;
+                        }
+                    } else if (char === ',' && !insideQuotes) {
+                        result.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                result.push(current.trim());
+                return result;
+            }
+
+            const headers = parseRow(lines[0]);
+            const data = lines.slice(1).map(row => {
+                const vals = parseRow(row);
+                let obj = {};
+                headers.forEach((h, i) => obj[h] = vals[i] || '');
+                return obj;
+            });
+            return { headers, data };
+        }
+
+        // ----------------------------------------------------------------
+        // STATE STORE
+        // ----------------------------------------------------------------
+        const store = {
+            masterData: [],
+            masterHeaders: [],
+            incomingFiles: [],
+            fileIdCounter: 0,
+            mapIdCounter: 0,
+            presets: [],
+            modalFileId: null,
+            undoStack: [],
+            redoStack: [],
+            maxUndo: 20,
+            _subscribers: [],
+
+            init() {
+                try {
+                    const saved = localStorage.getItem('csvMapper_presets');
+                    if (saved) this.presets = JSON.parse(saved);
+                } catch (e) { /* ignore */ }
+
+                document.getElementById('masterFile').addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (file) this.loadMasterFile(file);
+                });
+                document.getElementById('incomingFile').addEventListener('change', (e) => {
+                    const files = e.target.files;
+                    if (files.length) this.loadIncomingFiles(files);
+                });
+
+                document.getElementById('modalClose').addEventListener('click', () => this.closeModal());
+                document.getElementById('modalOverlay').addEventListener('click', () => this.closeModal());
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && this.modalFileId !== null) this.closeModal();
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault();
+                        this.undo(); }
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'y') { e.preventDefault();
+                        this.redo(); }
+                });
+
+                this.notify();
+            },
+
+            subscribe(fn) {
+                this._subscribers.push(fn);
+                return () => { this._subscribers = this._subscribers.filter(f => f !== fn); };
+            },
+
+            notify() {
+                if (this._notifyTimer) cancelAnimationFrame(this._notifyTimer);
+                this._notifyTimer = requestAnimationFrame(() => {
+                    this._subscribers.forEach(fn => fn(this));
+                    this._notifyTimer = null;
+                });
+            },
+
+            // --- Undo/Redo ---
+            _pushUndo() {
+                const state = {
+                    masterData: this.masterData.map(row => ({ ...row })),
+                    masterHeaders: [...this.masterHeaders],
+                    incomingFiles: this.incomingFiles.map(f => ({
+                        id: f.id,
+                        name: f.name,
+                        data: f.data.map(row => ({ ...row })),
+                        headers: [...f.headers],
+                        mappings: f.mappings.map(m => ({ ...m }))
+                    })),
+                    fileIdCounter: this.fileIdCounter,
+                    mapIdCounter: this.mapIdCounter,
+                    presets: this.presets.map(p => ({ ...p, mappings: p.mappings.map(m => ({ ...m })) }))
+                };
+                this.undoStack.push(state);
+                if (this.undoStack.length > this.maxUndo) this.undoStack.shift();
+                this.redoStack = [];
+            },
+
+            undo() {
+                if (!this.undoStack.length) return;
+                const current = {
+                    masterData: this.masterData.map(row => ({ ...row })),
+                    masterHeaders: [...this.masterHeaders],
+                    incomingFiles: this.incomingFiles.map(f => ({
+                        id: f.id,
+                        name: f.name,
+                        data: f.data.map(row => ({ ...row })),
+                        headers: [...f.headers],
+                        mappings: f.mappings.map(m => ({ ...m }))
+                    })),
+                    fileIdCounter: this.fileIdCounter,
+                    mapIdCounter: this.mapIdCounter,
+                    presets: this.presets.map(p => ({ ...p, mappings: p.mappings.map(m => ({ ...m })) }))
+                };
+                this.redoStack.push(current);
+                const prev = this.undoStack.pop();
+                this._restoreState(prev);
+                this.notify();
+                showToast('undo');
+            },
+
+            redo() {
+                if (!this.redoStack.length) return;
+                const next = this.redoStack.pop();
+                const current = {
+                    masterData: this.masterData.map(row => ({ ...row })),
+                    masterHeaders: [...this.masterHeaders],
+                    incomingFiles: this.incomingFiles.map(f => ({
+                        id: f.id,
+                        name: f.name,
+                        data: f.data.map(row => ({ ...row })),
+                        headers: [...f.headers],
+                        mappings: f.mappings.map(m => ({ ...m }))
+                    })),
+                    fileIdCounter: this.fileIdCounter,
+                    mapIdCounter: this.mapIdCounter,
+                    presets: this.presets.map(p => ({ ...p, mappings: p.mappings.map(m => ({ ...m })) }))
+                };
+                this.undoStack.push(current);
+                this._restoreState(next);
+                this.notify();
+                showToast('redo');
+            },
+
+            _restoreState(state) {
+                this.masterData = state.masterData;
+                this.masterHeaders = state.masterHeaders;
+                this.incomingFiles = state.incomingFiles;
+                this.fileIdCounter = state.fileIdCounter;
+                this.mapIdCounter = state.mapIdCounter;
+                this.presets = state.presets;
+                if (this.modalFileId !== null) {
+                    const exists = this.incomingFiles.some(f => f.id === this.modalFileId);
+                    if (!exists) this.closeModal();
+                }
+            },
+
+            // --- Master ---
+            loadMasterFile(file) {
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    const result = parseCSV(ev.target.result);
+                    if (result.headers.length) {
+                        this._pushUndo();
+                        this.masterHeaders = result.headers;
+                        this.masterData = result.data;
+                        this.notify();
+                        showToast(`master: ${this.masterData.length} rows`);
+                    } else {
+                        showToast('invalid CSV');
+                    }
+                };
+                reader.readAsText(file);
+                document.getElementById('masterFile').value = '';
+            },
+
+            createMaster() {
+                showPrompt('Master name', 'master', 'e.g. products', (name) => {
+                    if (!name) return;
+                    showPrompt('Columns (comma separated)', 'id,name,email', 'col1, col2', (cols) => {
+                        if (!cols) return;
+                        this._pushUndo();
+                        this.masterHeaders = cols.split(',').map(c => c.trim());
+                        this.masterData = [];
+                        let row = {};
+                        this.masterHeaders.forEach(h => row[h] = '');
+                        this.masterData.push(row);
+                        this.notify();
+                        showToast(`created: ${name}`);
+                    });
+                });
+            },
+
+            // --- Incoming ---
+            loadIncomingFiles(files) {
+                let loaded = 0;
+                for (let f of files) {
+                    const reader = new FileReader();
+                    reader.onload = (ev) => {
+                        const result = parseCSV(ev.target.result);
+                        if (result.headers.length) {
+                            this._pushUndo();
+                            this.incomingFiles.push({
+                                id: this.fileIdCounter++,
+                                name: f.name,
+                                data: result.data,
+                                headers: result.headers,
+                                mappings: []
+                            });
+                        }
+                        loaded++;
+                        if (loaded === files.length) {
+                            this.notify();
+                            showToast(`loaded ${this.incomingFiles.length} files`);
+                        }
+                    };
+                    reader.readAsText(f);
+                }
+                document.getElementById('incomingFile').value = '';
+            },
+
+            createIncoming() {
+                showPrompt('File name', 'incoming', 'e.g. vendor_a', (name) => {
+                    if (!name) return;
+                    showPrompt('Columns (comma separated)', 'col1,col2,col3', 'col1, col2', (cols) => {
+                        if (!cols) return;
+                        this._pushUndo();
+                        const headers = cols.split(',').map(c => c.trim());
+                        const data = [];
+                        let row = {};
+                        headers.forEach(h => row[h] = '');
+                        data.push(row);
+                        const newFile = {
+                            id: this.fileIdCounter++,
+                            name: name + '.csv',
+                            data: data,
+                            headers: headers,
+                            mappings: []
+                        };
+                        this.incomingFiles.push(newFile);
+                        this.notify();
+                        showToast(`created: ${name}`);
+                    });
+                });
+            },
+
+            // --- Modal ---
+            openModal(fileId) {
+                const file = this.incomingFiles.find(f => f.id === fileId);
+                if (!file) return;
+                this.modalFileId = fileId;
+                this.notify();
+                requestAnimationFrame(() => {
+                    document.getElementById('modalOverlay').classList.add('open');
+                    document.getElementById('modal').classList.add('open');
+                });
+            },
+
+            closeModal() {
+                this.modalFileId = null;
+                document.getElementById('modalOverlay').classList.remove('open');
+                document.getElementById('modal').classList.remove('open');
+                this.notify();
+            },
+
+            // --- Mappings ---
+            addMapping(sourceCol, targetCol, transform = 'none') {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                this._pushUndo();
+                file.mappings.push({
+                    id: this.mapIdCounter++,
+                    sourceCol,
+                    targetCol,
+                    transform
+                });
+                this.notify();
+            },
+
+            removeMappingByTarget(targetCol) {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                this._pushUndo();
+                file.mappings = file.mappings.filter(m => m.targetCol !== targetCol);
+                this.notify();
+                showToast(`removed mappings to ${targetCol}`);
+            },
+
+            // --- Presets ---
+            savePreset() {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                if (!file.mappings.length) { showToast('no mappings to save'); return; }
+                showPrompt('Preset name', file.name.replace(/\.csv$/i, '') + ' mapping', 'e.g. weekly import', (name) => {
+                    if (!name) return;
+                    if (this.presets.some(p => p.name === name)) {
+                        showToast('preset name already exists');
+                        return;
+                    }
+                    this._pushUndo();
+                    const presetMaps = file.mappings.map(m => ({
+                        source: m.sourceCol,
+                        target: m.targetCol,
+                        transform: m.transform
+                    }));
+                    this.presets.push({ name, mappings: presetMaps });
+                    try {
+                        localStorage.setItem('csvMapper_presets', JSON.stringify(this.presets));
+                    } catch (e) { showToast('could not save preset (storage full)'); }
+                    this.notify();
+                    showToast(`saved preset: ${name}`);
+                });
+            },
+
+            applyPreset(presetIdx) {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                const preset = this.presets[presetIdx];
+                if (!preset) return;
+                this._pushUndo();
+                file.mappings = [];
+                preset.mappings.forEach(pm => {
+                    if (file.headers.includes(pm.source) && this.masterHeaders.includes(pm.target)) {
+                        file.mappings.push({
+                            id: this.mapIdCounter++,
+                            sourceCol: pm.source,
+                            targetCol: pm.target,
+                            transform: pm.transform || 'none'
+                        });
+                    }
+                });
+                this.notify();
+                showToast(`applied preset: ${preset.name}`);
+            },
+
+            deletePreset(presetIdx) {
+                this._pushUndo();
+                this.presets.splice(presetIdx, 1);
+                try {
+                    localStorage.setItem('csvMapper_presets', JSON.stringify(this.presets));
+                } catch (e) { showToast('could not delete preset (storage error)'); }
+                this.notify();
+                showToast('preset deleted');
+            },
+
+            // --- Export All (with format selection) ---
+            exportAll() {
+                const toExport = this.incomingFiles.filter(f => f.mappings.length > 0);
+                if (!toExport.length) { showToast('no mapped files to export'); return; }
+
+                const format = document.getElementById('exportFormatSelect').value;
+                let content = '';
+                let filename = 'all_mapped';
+                let mime = 'text/plain';
+
+                if (format === 'csv') {
+                    // --- PURE MERGED MASTER SCHEMA (NO source_file column) ---
+                    const allTargetCols = new Set();
+                    toExport.forEach(f => {
+                        f.mappings.forEach(m => allTargetCols.add(m.targetCol));
+                    });
+                    const sortedTargets = Array.from(allTargetCols).sort();
+                    let csv = sortedTargets.join(',') + '\n';
+                    toExport.forEach(f => {
+                        const groups = {};
+                        f.mappings.forEach(m => {
+                            if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                            groups[m.targetCol].push(m);
+                        });
+                        f.data.forEach(row => {
+                            const vals = sortedTargets.map(tc => {
+                                const g = groups[tc];
+                                if (!g) return '';
+                                const isConcat = g.length > 1 || g.some(m => m.transform ===
+                                    'concat');
+                                if (isConcat) {
+                                    const parts = g.map(m => {
+                                        let v = row[m.sourceCol] || '';
+                                        const transformFn = TRANSFORMS[m.transform] ||
+                                            TRANSFORMS.none;
+                                        return transformFn(v);
+                                    });
+                                    return `"${TRANSFORMS.concat(parts).replace(/"/g, '""')}"`;
+                                } else {
+                                    let v = row[g[0].sourceCol] || '';
+                                    const transformFn = TRANSFORMS[g[0].transform] || TRANSFORMS
+                                        .none;
+                                    return `"${transformFn(v).replace(/"/g, '""')}"`;
+                                }
+                            });
+                            csv += vals.join(',') + '\n';
+                        });
+                    });
+                    content = csv;
+                    filename = 'merged_master.csv';
+                    mime = 'text/csv';
+                } else if (format === 'json') {
+                    // JSON: keep source_file for context
+                    const result = toExport.map(f => {
+                        const groups = {};
+                        f.mappings.forEach(m => {
+                            if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                            groups[m.targetCol].push(m);
+                        });
+                        const targetCols = Object.keys(groups);
+                        const rows = f.data.map(row => {
+                            const obj = {};
+                            targetCols.forEach(tc => {
+                                const g = groups[tc];
+                                const isConcat = g.length > 1 || g.some(m => m.transform ===
+                                    'concat');
+                                if (isConcat) {
+                                    const parts = g.map(m => {
+                                        let v = row[m.sourceCol] || '';
+                                        const transformFn = TRANSFORMS[m.transform] ||
+                                            TRANSFORMS.none;
+                                        return transformFn(v);
+                                    });
+                                    obj[tc] = TRANSFORMS.concat(parts);
+                                } else {
+                                    let v = row[g[0].sourceCol] || '';
+                                    const transformFn = TRANSFORMS[g[0].transform] || TRANSFORMS
+                                        .none;
+                                    obj[tc] = transformFn(v);
+                                }
+                            });
+                            return obj;
+                        });
+                        return { sourceFile: f.name, data: rows };
+                    });
+                    content = JSON.stringify(result, null, 2);
+                    filename = 'all_mapped.json';
+                    mime = 'application/json';
+                } else { // txt
+                    toExport.forEach((file) => {
+                        const groups = {};
+                        file.mappings.forEach(m => {
+                            if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                            groups[m.targetCol].push(m);
+                        });
+                        const targetCols = Object.keys(groups);
+                        let csv = targetCols.join(',') + '\n';
+                        file.data.forEach(row => {
+                            const vals = targetCols.map(tc => {
+                                const g = groups[tc];
+                                const isConcat = g.length > 1 || g.some(m => m.transform ===
+                                    'concat');
+                                if (isConcat) {
+                                    const parts = g.map(m => {
+                                        let v = row[m.sourceCol] || '';
+                                        const transformFn = TRANSFORMS[m.transform] ||
+                                            TRANSFORMS.none;
+                                        return transformFn(v);
+                                    });
+                                    return `"${TRANSFORMS.concat(parts).replace(/"/g, '""')}"`;
+                                } else {
+                                    let v = row[g[0].sourceCol] || '';
+                                    const transformFn = TRANSFORMS[g[0].transform] || TRANSFORMS
+                                        .none;
+                                    return `"${transformFn(v).replace(/"/g, '""')}"`;
+                                }
+                            });
+                            csv += vals.join(',') + '\n';
+                        });
+                        const base = file.name.replace(/\.csv$/i, '') || 'file';
+                        content += `--- ${base}_mapped.csv ---\n${csv}\n\n`;
+                    });
+                    filename = 'all_mapped.txt';
+                    mime = 'text/plain';
+                }
+
+                downloadFile(content, filename, mime);
+                showToast(`exported ${toExport.length} files as ${format.toUpperCase()}`);
+            },
+
+            // --- Individual exports ---
+            exportCSV() {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                if (!file.mappings.length) { showToast('no mappings'); return; }
+                const groups = {};
+                file.mappings.forEach(m => {
+                    if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                    groups[m.targetCol].push(m);
+                });
+                const targetCols = Object.keys(groups);
+                let csv = targetCols.join(',') + '\n';
+                file.data.forEach(row => {
+                    const vals = targetCols.map(tc => {
+                        const g = groups[tc];
+                        const isConcat = g.length > 1 || g.some(m => m.transform === 'concat');
+                        if (isConcat) {
+                            const parts = g.map(m => {
+                                let v = row[m.sourceCol] || '';
+                                const transformFn = TRANSFORMS[m.transform] || TRANSFORMS.none;
+                                return transformFn(v);
+                            });
+                            return `"${TRANSFORMS.concat(parts).replace(/"/g, '""')}"`;
+                        } else {
+                            let v = row[g[0].sourceCol] || '';
+                            const transformFn = TRANSFORMS[g[0].transform] || TRANSFORMS.none;
+                            return `"${transformFn(v).replace(/"/g, '""')}"`;
+                        }
+                    });
+                    csv += vals.join(',') + '\n';
+                });
+                const base = file.name.replace(/\.csv$/i, '');
+                downloadFile(csv, `${base}_mapped.csv`, 'text/csv');
+                showToast(`exported CSV: ${base}_mapped.csv`);
+            },
+
+            exportSQL() {
+                const output = document.getElementById('sqlOutput').textContent;
+                if (!output || output.startsWith('-- no') || output.startsWith('-- generate')) {
+                    showToast('generate SQL first');
+                    return;
+                }
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                const base = file ? file.name.replace(/\.csv$/i, '') : 'mapped';
+                downloadFile(output, `${base}_mapped.sql`, 'text/plain');
+                showToast(`exported SQL: ${base}_mapped.sql`);
+            },
+
+            // --- SQL & Run ---
+            generateSQL() {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                if (!file.mappings.length) {
+                    document.getElementById('sqlOutput').textContent = '-- no mappings defined. drag columns to map.';
+                    return;
+                }
+                if (!this.masterHeaders.length) {
+                    document.getElementById('sqlOutput').textContent = '-- no master data loaded.';
+                    return;
+                }
+
+                const groups = {};
+                file.mappings.forEach(m => {
+                    if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                    groups[m.targetCol].push(m);
+                });
+                const targetCols = Object.keys(groups);
+
+                const createSQL =
+                    `CREATE TABLE mapped_${file.name.replace(/\.csv$/i, '').toLowerCase().replace(/[^a-z0-9_]/g, '_')} (\n  ${targetCols.map(c => `  "${c}" TEXT`).join(',\n')}\n);`;
+
+                const rows = file.data.map(row => {
+                    const vals = targetCols.map(tc => {
+                        const g = groups[tc];
+                        const isConcat = g.length > 1 || g.some(m => m.transform === 'concat');
+                        if (isConcat) {
+                            const parts = g.map(m => {
+                                let v = row[m.sourceCol] || '';
+                                const transformFn = TRANSFORMS[m.transform] || TRANSFORMS.none;
+                                return transformFn(v);
+                            });
+                            return `'${TRANSFORMS.concat(parts).replace(/'/g, "''")}'`;
+                        } else {
+                            let v = row[g[0].sourceCol] || '';
+                            const transformFn = TRANSFORMS[g[0].transform] || TRANSFORMS.none;
+                            return `'${transformFn(v).replace(/'/g, "''")}'`;
+                        }
+                    });
+                    return `  (${vals.join(', ')})`;
+                });
+
+                const insertSQL =
+                    `INSERT INTO mapped_${file.name.replace(/\.csv$/i, '').toLowerCase().replace(/[^a-z0-9_]/g, '_')} (${targetCols.map(c => `"${c}"`).join(', ')}) VALUES\n${rows.join(',\n')};`;
+                document.getElementById('sqlOutput').textContent = `${createSQL}\n\n${insertSQL}`;
+            },
+
+            runMapping() {
+                if (this.modalFileId === null) return;
+                const file = this.incomingFiles.find(f => f.id === this.modalFileId);
+                if (!file) return;
+                if (!file.mappings.length) { showToast('no mappings to run'); return; }
+
+                const groups = {};
+                file.mappings.forEach(m => {
+                    if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                    groups[m.targetCol].push(m);
+                });
+                const targetCols = Object.keys(groups);
+
+                let preview = '-- RUN OUTPUT: Mapped CSV Preview (first 5 rows) --\n';
+                preview += targetCols.join(',') + '\n';
+
+                const limit = Math.min(file.data.length, 5);
+                for (let i = 0; i < limit; i++) {
+                    const row = file.data[i];
+                    const vals = targetCols.map(tc => {
+                        const g = groups[tc];
+                        const isConcat = g.length > 1 || g.some(m => m.transform === 'concat');
+                        if (isConcat) {
+                            const parts = g.map(m => {
+                                let v = row[m.sourceCol] || '';
+                                const transformFn = TRANSFORMS[m.transform] || TRANSFORMS.none;
+                                return transformFn(v);
+                            });
+                            return `"${TRANSFORMS.concat(parts).replace(/"/g, '""')}"`;
+                        } else {
+                            let v = row[g[0].sourceCol] || '';
+                            const transformFn = TRANSFORMS[g[0].transform] || TRANSFORMS.none;
+                            return `"${transformFn(v).replace(/"/g, '""')}"`;
+                        }
+                    });
+                    preview += vals.join(',') + '\n';
+                }
+                if (file.data.length > 5) preview += `... (${file.data.length - 5} more rows)\n`;
+                preview += '\n-- ✅ Mapping applied. Export CSV to download the full file. --';
+
+                document.getElementById('sqlOutput').textContent = preview;
+                showToast('mapping applied — preview shown in SQL panel');
+            },
+
+            // --- Clear ---
+            clearAll() {
+                this._pushUndo();
+                this.masterData = [];
+                this.masterHeaders = [];
+                this.incomingFiles = [];
+                this.fileIdCounter = 0;
+                this.mapIdCounter = 0;
+                this.modalFileId = null;
+                document.getElementById('modalOverlay').classList.remove('open');
+                document.getElementById('modal').classList.remove('open');
+                this.notify();
+                showToast('cleared');
+            }
+        };
+
+        // ----------------------------------------------------------------
+        // HELPERS
+        // ----------------------------------------------------------------
+        function downloadFile(content, filename, mime = 'text/plain') {
+            const blob = new Blob([content], { type: mime });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._hide);
+            t._hide = setTimeout(() => t.classList.remove('show'), 1400);
+        }
+
+        function showPrompt(title, defaultValue, placeholder, callback) {
+            const overlay = document.createElement('div');
+            overlay.className = 'prompt-overlay';
+
+            const modal = document.createElement('div');
+            modal.className = 'prompt-modal';
+
+            modal.innerHTML = `
+                <div class="title">${title}</div>
+                <input type="text" id="promptInput" value="${defaultValue || ''}" placeholder="${placeholder || ''}" autofocus />
+                <div class="actions">
+                    <button class="btn-cancel" id="promptCancel">cancel</button>
+                    <button class="btn-confirm" id="promptConfirm">confirm</button>
+                </div>
+            `;
+
+            overlay.appendChild(modal);
+            document.body.appendChild(overlay);
+
+            const input = modal.querySelector('#promptInput');
+            const confirmBtn = modal.querySelector('#promptConfirm');
+            const cancelBtn = modal.querySelector('#promptCancel');
+
+            const cleanup = (val) => {
+                document.body.removeChild(overlay);
+                callback(val);
+            };
+
+            confirmBtn.addEventListener('click', () => cleanup(input.value));
+            cancelBtn.addEventListener('click', () => cleanup(null));
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) cleanup(null); });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') cleanup(input.value);
+                if (e.key === 'Escape') cleanup(null);
+            });
+
+            input.focus();
+            input.select();
+        }
+
+        // ----------------------------------------------------------------
+        // RENDER FUNCTIONS
+        // ----------------------------------------------------------------
+
+        // --- Canvas (Solar System) ---
+        function renderCanvas(state) {
+            const canvas = document.getElementById('canvas');
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width || 800;
+            const h = rect.height || 500;
+
+            const toolbar = document.getElementById('toolbar');
+            canvas.innerHTML = '';
+            canvas.appendChild(toolbar);
+
+            if (!state.masterHeaders.length && !state.incomingFiles.length) {
+                const empty = document.createElement('div');
+                empty.className = 'empty-state';
+                empty.style.cssText =
+                    'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+                empty.innerHTML = `
+                    <span class="big-icon" aria-hidden="true">⧉</span>
+                    upload or create a master CSV
+                    <span class="hint">incoming files orbit around it</span>
+                `;
+                canvas.appendChild(empty);
+                return;
+            }
+
+            const cx = w / 2;
+            const cy = h / 2;
+            const radius = Math.min(w, h) * 0.34;
+
+            const masterCellWidth = 160;
+            const masterCellHeight = 60;
+            const incomingCellWidth = 130;
+            const incomingCellHeight = 50;
+
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.style.cssText =
+                'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;';
+            const colors = ['#2563eb', '#7c3aed', '#d97706', '#dc2626', '#0891b2', '#4f46e5', '#059669', '#9333ea'];
+
+            state.incomingFiles.forEach((file, idx) => {
+                if (!file.mappings.length) return;
+                const angle = (idx / Math.max(state.incomingFiles.length, 1)) * 2 * Math.PI - Math.PI / 2;
+                const x = cx + radius * Math.cos(angle);
+                const y = cy + radius * Math.sin(angle);
+                const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+                if (dist < 10) return;
+
+                const dx = (x - cx) / dist;
+                const dy = (y - cy) / dist;
+                const startX = x - dx * (incomingCellWidth / 2 + 10);
+                const startY = y - dy * (incomingCellHeight / 2 + 10);
+                const endX = cx + dx * (masterCellWidth / 2 + 10);
+                const endY = cy + dy * (masterCellHeight / 2 + 10);
+
+                const color = colors[idx % colors.length];
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                const midX = (startX + endX) / 2;
+                path.setAttribute('d', `M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}`);
+                path.setAttribute('stroke', color);
+                path.setAttribute('stroke-width', '3');
+                path.setAttribute('stroke-dasharray', '8 5');
+                path.style.animation = 'dash-flow 0.8s linear infinite';
+                path.setAttribute('fill', 'none');
+                path.classList.add('connection-line');
+                svg.appendChild(path);
+            });
+            canvas.appendChild(svg);
+
+            // Master
+            const masterCell = document.createElement('div');
+            masterCell.className = 'cell master-cell';
+            masterCell.style.cssText = `left:${cx}px;top:${cy}px;z-index:10;`;
+            masterCell.innerHTML = `
+                <div class="name">
+                    <span class="badge-dot master-dot" aria-hidden="true"></span>
+                    ${state.masterHeaders.length ? 'master' : '—'}
+                </div>
+                <div class="stats">${state.masterData.length} rows · ${state.masterHeaders.length} cols</div>
+            `;
+            canvas.appendChild(masterCell);
+
+            // Incoming
+            state.incomingFiles.forEach((file, idx) => {
+                const angle = (idx / Math.max(state.incomingFiles.length, 1)) * 2 * Math.PI - Math.PI / 2;
+                const x = cx + radius * Math.cos(angle);
+                const y = cy + radius * Math.sin(angle);
+                const isMapped = file.mappings.length > 0;
+
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.style.cssText =
+                    `left:${x}px;top:${y}px;z-index:10;border-color:${isMapped ? '#16a34a' : '#1e293b'};animation-delay:${0.05 + idx * 0.04}s;`;
+                cell.innerHTML = `
+                    <div class="name">
+                        <span class="badge-dot ${isMapped ? 'mapped' : 'pending'}" aria-hidden="true"></span>
+                        ${file.name.replace(/\.csv$/i, '').slice(0, 16)}
+                    </div>
+                    <div class="stats">${file.data.length} rows · ${file.headers.length} cols</div>
+                `;
+                canvas.appendChild(cell);
+
+                const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+                if (dist > 10) {
+                    const dx = (x - cx) / dist;
+                    const dy = (y - cy) / dist;
+                    const offset = 35;
+                    const px = (cx + x) / 2 + dy * offset;
+                    const py = (cy + y) / 2 - dx * offset;
+
+                    const plus = document.createElement('div');
+                    plus.className = 'plus-btn';
+                    plus.style.cssText = `left:${px}px;top:${py}px;z-index:20;animation-delay:${0.1 + idx * 0.04}s;`;
+                    plus.textContent = '+';
+                    plus.dataset.id = file.id;
+                    plus.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        store.openModal(parseInt(plus.dataset.id));
+                    });
+                    canvas.appendChild(plus);
+                }
+            });
+
+            // Update undo/redo button states
+            document.getElementById('undoBtn').disabled = state.undoStack.length === 0;
+            document.getElementById('redoBtn').disabled = state.redoStack.length === 0;
+        }
+
+        // --- Modal Tables ---
+        function renderModalTables(state) {
+            if (state.modalFileId === null) {
+                document.getElementById('modalIncomingWrap').innerHTML = '';
+                document.getElementById('modalMasterWrap').innerHTML = '';
+                return;
+            }
+            const file = state.incomingFiles.find(f => f.id === state.modalFileId);
+            if (!file) {
+                store.closeModal();
+                return;
+            }
+
+            document.getElementById('modalSrcName').textContent = file.name.replace(/\.csv$/i, '');
+            document.getElementById('modalTgtName').textContent = 'master';
+            document.getElementById('modalSrcCount').textContent = file.data.length;
+            document.getElementById('modalTgtCount').textContent = state.masterData.length;
+
+            // --- Incoming table ---
+            const iw = document.getElementById('modalIncomingWrap');
+            let html = `<table><thead><tr>`;
+            file.headers.forEach(col => {
+                const isMapped = file.mappings.some(m => m.sourceCol === col);
+                html +=
+                    `<th class="incoming-th ${isMapped ? 'mapped-col' : ''}" draggable="true" data-source-col="${col}">${col}</th>`;
+            });
+            html += `</tr></thead><tbody>`;
+            const limit = Math.min(file.data.length, PREVIEW_ROWS);
+            for (let i = 0; i < limit; i++) {
+                html += '<tr>';
+                file.headers.forEach(col => {
+                    html += `<td>${file.data[i][col] ?? ''}</td>`;
+                });
+                html += '</tr>';
+            }
+            if (file.data.length > PREVIEW_ROWS) {
+                html += `<tr><td colspan="${file.headers.length}" style="font-style:italic;color:#94a3b8;text-align:center;">… ${file.data.length - PREVIEW_ROWS} more rows</td></tr>`;
+            }
+            html += `</tbody></table>`;
+            iw.innerHTML = html;
+
+            // --- Master table ---
+            const mw = document.getElementById('modalMasterWrap');
+            html = `<table><thead><tr>`;
+            state.masterHeaders.forEach(col => {
+                const isMapped = file.mappings.some(m => m.targetCol === col);
+                html +=
+                    `<th class="master-th ${isMapped ? 'mapped-col' : ''}" data-master-col="${col}">${col}</th>`;
+            });
+            html += `</tr></thead><tbody>`;
+            const mLimit = Math.min(state.masterData.length, PREVIEW_ROWS);
+            for (let i = 0; i < mLimit; i++) {
+                html += '<tr>';
+                state.masterHeaders.forEach(col => {
+                    html += `<td>${state.masterData[i][col] ?? ''}</td>`;
+                });
+                html += '</tr>';
+            }
+            if (state.masterData.length > PREVIEW_ROWS) {
+                html += `<tr><td colspan="${state.masterHeaders.length}" style="font-style:italic;color:#94a3b8;text-align:center;">… ${state.masterData.length - PREVIEW_ROWS} more rows</td></tr>`;
+            }
+            html += `</tbody></table>`;
+            mw.innerHTML = html;
+
+            // --- Event Delegation ---
+            const newIw = document.createElement('div');
+            newIw.className = iw.className;
+            newIw.id = iw.id;
+            newIw.innerHTML = iw.innerHTML;
+            iw.parentNode.replaceChild(newIw, iw);
+
+            const newMw = document.createElement('div');
+            newMw.className = mw.className;
+            newMw.id = mw.id;
+            newMw.innerHTML = mw.innerHTML;
+            mw.parentNode.replaceChild(newMw, mw);
+
+            newIw.addEventListener('dragstart', function(e) {
+                const th = e.target.closest('th[data-source-col]');
+                if (th) {
+                    e.dataTransfer.setData('text/plain', th.dataset.sourceCol);
+                    e.dataTransfer.effectAllowed = 'copy';
+                }
+            });
+
+            newMw.addEventListener('dragover', function(e) {
+                const th = e.target.closest('th[data-master-col]');
+                if (th) {
+                    e.preventDefault();
+                    e.dataTransfer.dropEffect = 'copy';
+                    th.classList.add('drop-active');
+                }
+            });
+            newMw.addEventListener('dragleave', function(e) {
+                const th = e.target.closest('th[data-master-col]');
+                if (th) th.classList.remove('drop-active');
+            });
+            newMw.addEventListener('drop', function(e) {
+                const th = e.target.closest('th[data-master-col]');
+                if (th) {
+                    e.preventDefault();
+                    th.classList.remove('drop-active');
+                    const src = e.dataTransfer.getData('text/plain');
+                    const tgt = th.dataset.masterCol;
+                    if (src && tgt) {
+                        store.addMapping(src, tgt);
+                    }
+                }
+            });
+        }
+
+        // --- Visual mapper with memoization ---
+        let lastMappingsHash = '';
+
+        function renderModalVisual(state) {
+            if (state.modalFileId === null) {
+                document.getElementById('visPlaceholder').style.display = 'flex';
+                document.getElementById('modalSvg').innerHTML = '';
+                return;
+            }
+            const file = state.incomingFiles.find(f => f.id === state.modalFileId);
+            if (!file || !file.mappings.length || !state.masterHeaders.length) {
+                document.getElementById('visPlaceholder').style.display = 'flex';
+                document.getElementById('modalSvg').innerHTML = '';
+                return;
+            }
+            document.getElementById('visPlaceholder').style.display = 'none';
+
+            const hash = JSON.stringify(file.mappings.map(m => ({ s: m.sourceCol, t: m.targetCol, tr: m.transform })));
+            if (hash === lastMappingsHash) return;
+            lastMappingsHash = hash;
+
+            const visual = document.getElementById('modalVisual');
+            const rect = visual.getBoundingClientRect();
+            const w = Math.max(rect.width, 200);
+            const h = Math.max(rect.height, 60);
+
+            const colors = ['#2563eb', '#7c3aed', '#d97706', '#dc2626', '#0891b2', '#4f46e5', '#059669', '#9333ea'];
+            const padding = 10;
+            const leftX = 60;
+            const rightX = w - 60;
+
+            const mappings = file.mappings;
+            const numMappings = mappings.length;
+
+            const sourceYPositions = [];
+            if (numMappings === 1) {
+                sourceYPositions.push(h / 2);
+            } else {
+                const spacing = (h - 2 * padding) / (numMappings - 1);
+                for (let i = 0; i < numMappings; i++) {
+                    sourceYPositions.push(padding + i * spacing);
+                }
+            }
+
+            const uniqueTargets = [...new Set(mappings.map(m => m.targetCol))];
+            const numTargets = uniqueTargets.length;
+            const targetYPositions = {};
+            if (numTargets === 1) {
+                targetYPositions[uniqueTargets[0]] = h / 2;
+            } else {
+                const spacing = (h - 2 * padding) / (numTargets - 1);
+                uniqueTargets.forEach((target, idx) => {
+                    targetYPositions[target] = padding + idx * spacing;
+                });
+            }
+
+            const targetColorMap = {};
+            uniqueTargets.forEach((target, idx) => {
+                targetColorMap[target] = colors[idx % colors.length];
+            });
+
+            let content = '';
+            mappings.forEach((m, idx) => {
+                const srcY = sourceYPositions[idx];
+                const tgtY = targetYPositions[m.targetCol];
+                const color = targetColorMap[m.targetCol];
+
+                content += `
+                    <text x="${leftX - 6}" y="${srcY + 2}" font-size="7" font-weight="800" fill="${color}" text-anchor="end" font-family="Raleway, sans-serif" letter-spacing="0.04em" text-transform="uppercase">${m.sourceCol}</text>
+                `;
+                const midX = (leftX + rightX) / 2;
+                content += `
+                    <path d="M ${leftX} ${srcY} C ${midX} ${srcY}, ${midX} ${tgtY}, ${rightX} ${tgtY}" 
+                          stroke="${color}" stroke-width="2.5" fill="none" 
+                          stroke-dasharray="6 4" class="connection-line" />
+                `;
+                content += `
+                    <rect x="${leftX - 4}" y="${srcY - 4}" width="8" height="8" fill="${color}" stroke="#1e293b" stroke-width="1.5" />
+                `;
+            });
+            uniqueTargets.forEach((target) => {
+                const y = targetYPositions[target];
+                const color = targetColorMap[target];
+                content += `
+                    <rect x="${rightX - 4}" y="${y - 4}" width="8" height="8" fill="${color}" stroke="#1e293b" stroke-width="1.5" />
+                `;
+                content += `
+                    <text x="${rightX + 6}" y="${y + 2}" font-size="7" font-weight="800" fill="${color}" text-anchor="start" font-family="Raleway, sans-serif" letter-spacing="0.04em" text-transform="uppercase">${target}</text>
+                `;
+            });
+
+            document.getElementById('modalSvg').innerHTML = content;
+        }
+
+        // --- Mapping pills ---
+        function renderModalPills(state) {
+            const container = document.getElementById('mappingPillsSection');
+            if (state.modalFileId === null) {
+                container.innerHTML = `<span class="pill-placeholder">no mappings</span>`;
+                return;
+            }
+            const file = state.incomingFiles.find(f => f.id === state.modalFileId);
+            if (!file || !file.mappings.length) {
+                container.innerHTML = `<span class="pill-placeholder">drag columns to map</span>`;
+                return;
+            }
+
+            const groups = {};
+            file.mappings.forEach(m => {
+                if (!groups[m.targetCol]) groups[m.targetCol] = [];
+                groups[m.targetCol].push(m);
+            });
+            const sortedTargets = Object.keys(groups).sort();
+
+            let html = '';
+            const colors = ['#2563eb', '#7c3aed', '#d97706', '#dc2626', '#0891b2', '#4f46e5'];
+            let ci = 0;
+
+            sortedTargets.forEach(target => {
+                const items = groups[target];
+                const isMulti = items.length > 1;
+                const color = colors[ci % colors.length];
+                ci++;
+
+                html += `<span class="map-pill" style="border-left: 4px solid ${color};">`;
+                items.forEach((m, idx) => {
+                    if (idx > 0) html += `<span class="arrow">+</span>`;
+                    html += `<span class="src">${m.sourceCol}</span>`;
+                });
+                html += `<span class="arrow">→</span>`;
+                html += `<span class="tgt">${target}</span>`;
+                const trans = items[0].transform;
+                const badgeClass = isMulti ? 'concat' : (trans !== 'none' ? trans : '');
+                if (isMulti || trans !== 'none') {
+                    html += `<span class="transform-badge ${badgeClass}">${isMulti ? 'concat' : trans}</span>`;
+                }
+                html +=
+                    `<span class="del" onclick="store.removeMappingByTarget('${target}')" title="Remove all mappings to ${target}" aria-label="Remove mapping to ${target}">✕</span>`;
+                html += `</span>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ----------------------------------------------------------------
+        // SUBSCRIBE AND INIT
+        // ----------------------------------------------------------------
+        store.subscribe((state) => {
+            renderCanvas(state);
+            renderModalTables(state);
+            renderModalVisual(state);
+            renderModalPills(state);
+            if (state.modalFileId !== null) {
+                const file = state.incomingFiles.find(f => f.id === state.modalFileId);
+                if (file && file.mappings.length && state.masterHeaders.length) {
+                    store.generateSQL();
+                } else {
+                    document.getElementById('sqlOutput').textContent =
+                        '-- no mappings defined. drag columns to map.';
+                }
+            } else {
+                document.getElementById('sqlOutput').textContent =
+                    '-- open a file to start mapping.';
+            }
+        });
+
+        store.init();
+        window.store = store;
+    </script>
+</body>
+</html>
